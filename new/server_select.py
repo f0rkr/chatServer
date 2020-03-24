@@ -17,10 +17,10 @@ while True:
             print("new client:", a)
             listselect.append(sc)
         else:
-            msg = sc.recv(1500)
+            msg = i.recv(1500)
             if len(msg) == 0:
-                listselect.remove(sc)
+                listselect.remove(i)
                 print("client disconnected")
-                sc.close()
+                i.close()
                 break
-            sc.sendall(msg)
+            i.sendall(msg)
