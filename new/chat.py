@@ -114,7 +114,7 @@ while True:
                 msg = i.recv(1500)
                 sms = msg.decode().strip('\n')
                 if len(msg) == 0:
-                    Disconnect(sc)
+                    Disconnect(i)
                     break
                 handel(sms, i)
             except:
