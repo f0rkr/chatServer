@@ -19,10 +19,10 @@ while True:
             print("new client:", a)
             l.append(sc)
         else:
-            msg = sc.recv(1500)
+            msg = i.recv(1500)
             if len(msg) == 0:
-                l.remove(sc)
+                l.remove(i)
                 print("client disconnected")
-                sc.close()
+                i.close()
                 break
-            sc.sendall(msg)
+            i.sendall(msg)
