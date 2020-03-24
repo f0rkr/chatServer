@@ -99,27 +99,24 @@ def handel(msg, connection):
         if Error_Command(msg) == 1:
            KILL(msg, connection)
 
-def Main():
-    while True:
-        intr, nint, nit = select.select(l, [], [])
-        for i in intr:
-            if i == s:
-                sc, a = s.accept()
-                print("client connected \"%s:%i\""%(str(a[0]), int(a[1])))
-                nick[sc.getpeername()[1]] = "%s:%i"%(str(a[0]), int(a[1]))
-                l.append(sc)
-                clients.append(sc)
-            else:
-                try:
-                    msg = i.recv(1500)
-                    sms = msg.decode().strip('\n')
-                    if len(msg) == 0:
-                        Disconnect(sc)
-                        break
-                    handel(sms, i)
-                except:
-                    continue
-
-if __name__ == "__main__":
-    Main()
         
+while True:
+    intr, nint, nit = select.select(l, [], [])
+    for i in intr:
+        if i == s:
+            sc, a = s.accept()
+            print("client connected \"%s:%i\""%(str(a[0]), int(a[1])))
+            nick[sc.getpeername()[1]] = "%s:%i"%(str(a[0]), int(a[1]))
+            l.append(sc)
+            clients.append(sc)
+        else:
+            try:
+                msg = i.recv(1500)
+                sms = msg.decode().strip('\n')
+                if len(msg) == 0:
+                    Disconnect(sc)
+                    break
+                handel(sms, i)
+            except:
+                continue
+
