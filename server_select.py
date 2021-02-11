@@ -8,20 +8,18 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('', 7777))
 s.listen(1)
 
-l = [s]
-ll = []
-la = []
+listselect = [s]
 while True:
-    intr, nint, nit = select.select(l, ll, la)
+    intr, nint, nit = select.select(listselect, [], [])
     for i in intr:
         if i == s:
             sc, a = s.accept()
             print("new client:", a)
-            l.append(sc)
+            listselect.append(sc)
         else:
             msg = i.recv(1500)
             if len(msg) == 0:
-                l.remove(i)
+                listselect.remove(i)
                 print("client disconnected")
                 i.close()
                 break

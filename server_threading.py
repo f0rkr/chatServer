@@ -7,7 +7,7 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('', 7777))
 s.listen(1)
 
-def handle(sc):
+def start(sc):
         while True:
             msg = sc.recv(1500)
             if len(msg) == 0:
@@ -19,5 +19,5 @@ def handle(sc):
 while True:
     sc, a = s.accept()
     print("new client:", a)
-    t = threading.Thread(None, handle, None, (sc,))
+    t = threading.Thread(None, start, None, (sc,))
     t.start()
