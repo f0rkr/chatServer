@@ -11,4 +11,4 @@ This chat server contain commands:
 - NICK “nickname”: Add a nickname.
 - WHO: Get the list of all connected users.
 - QUIT “message”: properly disconnect the server by broadcast a farewell message.
-- KILL '<nick> <message>': To kick an unpleasant user, after having sent him a farewell message.
+- KILL 'nickname message': To kick an unpleasant user, after having sent him a farewell message.
